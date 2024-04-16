@@ -15,6 +15,7 @@ async function main() {
     { "client.id": "publisher-01" },
     "user-102"
   );
+
   publisher.on("onConnected", async () => {
     for (let i = 0; i < 10; i++) {
       console.log("Publishing message", i);
