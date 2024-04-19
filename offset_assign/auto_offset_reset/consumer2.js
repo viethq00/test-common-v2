@@ -13,7 +13,7 @@ const consumer2 = new Kafka.KafkaConsumer(
     "group.id": "consumer-group-2",
   },
   {
-    "auto.offset.reset": "latest",
+    "auto.offset.reset": "earliest",
   }
 );
 

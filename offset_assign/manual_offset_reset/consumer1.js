@@ -52,11 +52,11 @@ consumer1.on("ready", () => {
 });
 
 consumer1.on("data", function (message) {
-  // console.log(
-  //   `Consumer 1 received message: topic: ${message.topic} - offset: ${
-  //     message.offset
-  //   } -  value:${message.value.toString()}`
-  // );
+  console.log(
+    `Consumer 1 received message: topic: ${message.topic} - offset: ${
+      message.offset
+    } -  value:${message.value.toString()}`
+  );
 
   // if (message.value.toString().includes("fail")) {
   //   console.log("Consumer 1 failed to process the message, saving it...");

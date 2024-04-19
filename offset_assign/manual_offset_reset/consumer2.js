@@ -4,7 +4,7 @@ const fs = require("fs");
 const kafkaConfig = {
   "metadata.broker.list": "localhost:9092",
   "group.id": "consumer-group-1", // Consumer group id for the first consumer
-  "enable.auto.commit": true, // Disable auto commit offsets
+  "enable.auto.commit": false, // Disable auto commit offsets
 };
 
 const consumer2 = new Kafka.KafkaConsumer(
@@ -33,5 +33,5 @@ consumer2.on("data", function (message) {
       message.offset
     } -  value: ${message.value.toString()}`
   );
-  // consumer2.commitMessage(message); // Manually commit offset
+  consumer2.commitMessage(message); // Manually commit offset
 });

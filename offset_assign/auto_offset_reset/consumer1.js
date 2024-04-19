@@ -29,21 +29,21 @@ const kafkaConfig = {
 
 // Create consumers
 const consumer1 = new Kafka.KafkaConsumer(kafkaConfig, {
-  "auto.offset.reset": "latest",
+  "auto.offset.reset": "earliest",
 });
 
 const topic = "your-topic";
 consumer1.connect();
 
-consumer1.on("ready", () => {
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  console.log("check for un-commit offset");
-  if (fileContent) {
-    const failedEvent = JSON.parse(fileContent);
-    console.log("failed event: ", failedEvent);
-    consumer1.assign([failedEvent]);
-  }
-});
+// consumer1.on("ready", () => {
+//   const fileContent = fs.readFileSync(filePath, "utf-8");
+//   console.log("check for un-commit offset");
+//   if (fileContent) {
+//     const failedEvent = JSON.parse(fileContent);
+//     console.log("failed event: ", failedEvent);
+//     consumer1.assign([failedEvent]);
+//   }
+// });
 
 consumer1.on("ready", () => {
   console.log("consumer1 ready");
@@ -58,11 +58,11 @@ consumer1.on("data", function (message) {
     } -  value:${message.value.toString()}`
   );
 
-  if (message.value.toString().includes("fail")) {
-    console.log("Consumer 1 failed to process the message, saving it...");
-    // Save the failed event and the topic number
-    saveFailedEvent(message.topic, message.offset, message.partition);
+  // if (message.value.toString().includes("fail")) {
+  //   console.log("Consumer 1 failed to process the message, saving it...");
+  //   // Save the failed event and the topic number
+  //   saveFailedEvent(message.topic, message.offset, message.partition);
 
-    consumer1.disconnect();
-  }
+  //   consumer1.disconnect();
+  // }
 });

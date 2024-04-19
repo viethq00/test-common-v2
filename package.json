@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "node-rdkafka": "^2.18.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "ws": "^8.16.0"
   }
 }
